@@ -10,28 +10,28 @@ class NotesHandler {
     }
    
     postNoteHandler(request, h) {
-        try {
-          const { title = 'untitled', body, tags } = request.payload;
-     
-          const noteId = this._service.addNote({ title, body, tags });
-     
-          const response = h.response({
-            status: 'success',
-            message: 'Catatan berhasil ditambahkan',
-            data: {
-              noteId,
-            },
-          });
-          response.code(201);
-          return response;
-        } catch (error) {
-          const response = h.response({
-            status: 'fail',
-            message: error.message,
-          });
-          response.code(400);
-          return response;
-        }
+      try {
+        const { title = 'untitled', body, tags } = request.payload;
+   
+        const noteId = this._service.addNote({ title, body, tags });
+   
+        const response = h.response({
+          status: 'success',
+          message: 'Catatan berhasil ditambahkan',
+          data: {
+            noteId,
+          },
+        });
+        response.code(201);
+        return response;
+      } catch (error) {
+        const response = h.response({
+          status: 'fail',
+          message: error.message,
+        });
+        response.code(400);
+        return response;
+      }
     }
 
     getNotesHandler() {
@@ -63,6 +63,7 @@ class NotesHandler {
               return response;
         }
     }
+    
     putNoteByIdHandler(request, h) {
         try {
             const { id } = request.params;
@@ -82,6 +83,7 @@ class NotesHandler {
             return response;
         }
     }
+
     deleteNoteByIdHandler(request, h) {
         try {
             const { id } = request.params;
